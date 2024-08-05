@@ -1,0 +1,20 @@
+mat-toolbar {
+  /*background-color: #dedede;*/
+}
+.active {
+  background-color: #d7e3ff;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.small-spacer {
+  width: 30px;
+}
+
+.mat-toolbar {
+  position: sticky;
+  top: 0;
+}
+
