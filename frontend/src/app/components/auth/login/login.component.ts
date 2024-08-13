@@ -1,52 +1,51 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators, FormsModule} from "@angular/forms";
-import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
-import {MatFormField, MatInput} from "@angular/material/input";
+import {FormGroup, FormControl, Validators, FormsModule, FormBuilder} from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {FlexModule} from "@angular/flex-layout";
-import {MatToolbar} from "@angular/material/toolbar";
-import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatButton, MatButtonModule, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
+import { ReactiveFormsModule } from '@angular/forms';
+import {BrowserModule} from "@angular/platform-browser";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    MatCard,
-    MatInput,
-    MatFormField,
-    FlexModule,
-    MatToolbar,
-    MatButton,
-    MatCardContent,
-    MatCardTitle,
-    FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconButton,
-    MatIcon
+    MatButtonModule,
+    MatCheckboxModule,
+    NgIf,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  hide: boolean = true;
-  constructor() {
+  emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
   }
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(265)])
-      }
-    );
+    this.loginForm = this.formBuilder.group({
+      email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
+      password: [null, Validators.required]
+    });
   }
 
-  onSubmit() {
-    console.log("login")
+  submit() {
+    if (this.loginForm.valid) {
+      return;
+    }
+    console.log(this.loginForm.value);
   }
 
 }

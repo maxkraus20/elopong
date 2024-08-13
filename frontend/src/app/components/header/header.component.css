@@ -18,3 +18,9 @@ mat-toolbar {
   top: 0;
 }
 
+@media (min-width: 601px) {
+  .menu-button {
+    display: none; /* Versteckt den Menü-Button auf größeren Bildschirmen */
+  }
+}
+

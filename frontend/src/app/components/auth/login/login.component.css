@@ -1,34 +1,30 @@
-.mat-card {
-  max-width: 600px;
-  max-height: 600px;
-  margin: 2em auto;
-  text-align: center;
+.example-container{
+  text-align: center
 }
 
-.content-body {
-  padding: 60px 1rem;
+.form-container{
+  width: 100%;
+  max-width: 400px;
+  margin: 200px auto 0;
+  padding: 0 10px;
+}
+
+.form-field{
   display: block;
+  margin-bottom: 15px;
 }
 
-.header {
-  text-align: center;
-}
+@media (max-width: 400px) or (max-height: 700px){
 
-.full-width {
-  width: 80%;
-}
+  .form-container {
+    margin-top: 70px;
+    max-width: 300px;
+    padding: 0 5px;
+  }
 
-.forgot-password {
-  padding-left: 0px;
-}
-
-.email-input {
-  padding-top: 10%;
-}
-
-.aLink {
-  float: right;
-  padding-right: 60px;
+  .form-field {
+    margin-bottom: 10px;
+  }
 }
 
 
