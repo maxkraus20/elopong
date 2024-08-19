@@ -17,22 +17,22 @@ public class RegisterDto {
     private String email;
 
     @NotNull(message = "You must input an username.")
-    @Length(max = 256)
+    @Length(max = 64)
     @NotBlank(message = "User Name can't be empty.")
     private String inGameName;
 
     @NotNull(message = "You must input a firstname.")
-    @Length(max = 256)
+    @Length(max = 64)
     @NotBlank(message = "First Name can't be empty.")
     private String firstName;
 
     @NotNull(message = "You must input a lastname.")
-    @Length(max = 256)
+    @Length(max = 64)
     @NotBlank(message = "Last Name can't be empty.")
     private String lastName;
 
     @NotNull(message = "You must input a password.")
-    @Length(min = 8, max = 256)
+    @Length(min = 8, max = 64)
     @NotBlank(message = "Password can't be empty.")
     @ToString.Exclude
     private String password;

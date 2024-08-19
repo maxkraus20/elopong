@@ -1,1 +1,61 @@
-<p>register works!</p>
+<div class="example-container">
+  <div class="form-container">
+    <form [formGroup]="registerForm" (submit)="submit()">
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Firstname
+        </mat-label>
+        <input matInput formControlName="firstName" required>
+        <mat-error *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid">
+          <span *ngIf="registerForm.get('firstName')?.errors?.['required']">This field is mandatory.</span>
+          <span *ngIf="registerForm.get('firstName')?.errors?.['maxlength']">Firstname cannot exceed 64 characters.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Lastname
+        </mat-label>
+        <input matInput formControlName="lastName" required>
+        <mat-error *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid">
+          <span *ngIf="registerForm.get('lastName')?.errors?.['required']">This field is mandatory.</span>
+          <span *ngIf="registerForm.get('lastName')?.errors?.['maxlength']">Lastname cannot exceed 64 characters.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Username
+        </mat-label>
+        <input matInput formControlName="inGameName" required>
+        <mat-error *ngIf="registerForm.get('inGameName')?.touched && registerForm.get('inGameName')?.invalid">
+          <span *ngIf="registerForm.get('inGameName')?.errors?.['required']">This field is mandatory.</span>
+          <span *ngIf="registerForm.get('inGameName')?.errors?.['maxlength']">Username cannot exceed 64 characters.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Email
+        </mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+          <span *ngIf="registerForm.get('email')?.errors?.['required']">This field is mandatory.</span>
+          <span *ngIf="registerForm.get('email')?.errors?.['pattern']">This field is invalid.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">This field is mandatory.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['maxlength']">Password cannot exceed 64 characters.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Login</button>
+    </form>
+  </div>
+</div>

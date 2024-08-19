@@ -1,0 +1,28 @@
+.example-container {
+  text-align: center
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 80px auto 0;
+  padding: 0 10px;
+}
+
+.form-field {
+  display: block;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 400px) or (max-height: 700px){
+
+  .form-container {
+    margin-top: 40px;
+    max-width: 300px;
+    padding: 0 5px;
+  }
+
+  .form-field {
+    margin-bottom: 10px;
+  }
+}
