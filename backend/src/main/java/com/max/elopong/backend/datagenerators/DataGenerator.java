@@ -12,6 +12,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class    DataGenerator {
+public class DataGenerator {
 
     private final Logger LOGGER = LoggerFactory.getLogger(DataGenerator.class);
     private final UserRepository userRepository;

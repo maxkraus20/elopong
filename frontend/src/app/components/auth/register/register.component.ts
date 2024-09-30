@@ -7,6 +7,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {NgIf} from "@angular/common";
 import {RegisterDto} from "../../../dtos/registerDto";
 import {MatIcon} from "@angular/material/icon";
+import {AuthService} from "../../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -28,7 +30,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   hidePassword: boolean = true;
 
-  registerDto: RegisterDto = {
+  registerRequest: RegisterDto = {
     email: '',
     inGameName: '',
     firstName: '',
@@ -36,9 +38,14 @@ export class RegisterComponent {
     password: ''
   };
 
+  responseData: any;
+
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+
   ) {
   }
 
@@ -55,17 +62,17 @@ export class RegisterComponent {
   submit() {
     if (this.registerForm.valid) {
       const formValues = this.registerForm.value;
-
-      this.registerDto.email = formValues.email;
-      this.registerDto.inGameName = formValues.inGameName;
-      this.registerDto.firstName = formValues.firstName;
-      this.registerDto.lastName = formValues.lastName;
-      this.registerDto.password = formValues.password;
-
-      console.log(this.registerDto);
-    } else {
-      console.log(this.registerForm.errors);
-      console.log('Form is not valid')
+      this.registerRequest.email = formValues.email;
+      this.registerRequest.inGameName = formValues.inGameName;
+      this.registerRequest.firstName = formValues.firstName;
+      this.registerRequest.lastName = formValues.lastName;
+      this.registerRequest.password = formValues.password;
+      this.authService.registerUser(this.registerRequest).subscribe({
+        next: value => {
+          this.responseData = value;
+          this.router.navigate(['/login']);
+        }
+      })
     }
   }
 

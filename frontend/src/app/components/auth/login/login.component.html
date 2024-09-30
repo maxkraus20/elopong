@@ -13,11 +13,15 @@
       </mat-form-field>
 
       <mat-form-field class="form-field" appearance="outline">
-        <mat-label> Password
-        </mat-label>
-        <input matInput formControlName="password" type="password">
+        <mat-label> Password </mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
         <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
           <span *ngIf="loginForm.get('password')?.errors?.['required']">This field is mandatory.</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['maxlength']">Password cannot exceed 64 characters.</span>
         </mat-error>
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit">Login</button>
