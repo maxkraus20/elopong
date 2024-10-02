@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {AuthRequestDto} from "../dtos/authRequestDto";
 import {Observable} from "rxjs";
 import {RegisterDto} from "../dtos/registerDto";
+import jwt_decode, {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,50 @@ export class AuthService {
       this.authBaseUri + '/register',
       registerRequest
     );
+  }
+
+  isLoggedIn() {
+    return localStorage.getItem('token')!=null && !this.isExpired();
+  }
+
+  isExpired() {
+    return this.getExpirationDate().valueOf() < new Date().valueOf();
+  }
+
+  logoutUser() {
+    localStorage.removeItem('token');
+  }
+
+  getToken() {
+    return localStorage.getItem('token') || '';
+  }
+
+  getEmail() {
+    const decoded: any = jwtDecode(this.getToken());
+    return decoded.sub;
+  }
+
+  getRole() {
+    if (this.getToken()!= null) {
+      const decoded: any = jwtDecode(this.getToken());
+      const authInfo: string[] = decoded.rol;
+      if (authInfo.includes('ADMIN')) {
+        return 'ADMIN'
+      } else if (authInfo.includes('USER')) {
+        return 'USER';
+      }
+    }
+    return 'UNDEFINED';
+  }
+
+  getExpirationDate(): Date {
+    const decoded: any = jwtDecode(this.getToken());
+    if (decoded.exp === undefined) {
+      return new Date();
+    }
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
   }
 
 }

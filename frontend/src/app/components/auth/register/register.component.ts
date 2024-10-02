@@ -71,8 +71,13 @@ export class RegisterComponent {
         next: value => {
           this.responseData = value;
           this.router.navigate(['/login']);
+        } , error: err => {
+          console.log(err);
         }
       })
+    } else {
+      console.log(this.registerForm.errors);
+      console.log('Form is not valid')
     }
   }
 
