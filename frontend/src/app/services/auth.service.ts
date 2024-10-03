@@ -80,4 +80,12 @@ export class AuthService {
     return date;
   }
 
+  decodeToken() {
+    const loginToken = localStorage.getItem('token') || '';
+    const _extractedToken = loginToken.split('.')[1];
+    const _atobData = atob(_extractedToken);
+    const _finalData = JSON.parse(_atobData);
+    console.log(_finalData);
+  }
+
 }

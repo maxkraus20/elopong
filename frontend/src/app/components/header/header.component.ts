@@ -7,6 +7,7 @@ import { MatIcon} from "@angular/material/icon";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListItem, MatNavList} from "@angular/material/list";
 import {NgIf} from "@angular/common";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -31,9 +32,13 @@ import {NgIf} from "@angular/common";
 export class HeaderComponent {
 
   isMobile: boolean;
+  isLoggedIn: boolean;
 
-  constructor() {
+  constructor(
+    public authService: AuthService
+  ) {
     this.checkScreenSize();
+
   }
 
   @HostListener('window:resize', ['$event'])

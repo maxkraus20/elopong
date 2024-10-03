@@ -3,30 +3,78 @@
   <span class="small-spacer"></span>
 
   <button mat-button routerLink="/leaderboard" routerLinkActive="active">
+    <mat-icon>leaderboard</mat-icon>
     Leaderboard
   </button>
 
   <span class="spacer"></span>
-  <button *ngIf="!isMobile" mat-button routerLink="/login" routerLinkActive="active">
-    <mat-icon>login</mat-icon>
-    Login
-  </button>
-  <button *ngIf="!isMobile" mat-button routerLink="/register" routerLinkActive="active">
-    <mat-icon>person_add</mat-icon>
-    Register
-  </button>
-
-  <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/login" routerLinkActive="active">
+  <div *ngIf="!authService.isLoggedIn()">
+    <button *ngIf="!isMobile" mat-button routerLink="/login" routerLinkActive="active" class="button-spacer">
       <mat-icon>login</mat-icon>
       Login
     </button>
-    <button mat-menu-item routerLink="/register" routerLinkActive="active">
+    <button *ngIf="!isMobile" mat-button routerLink="/register" routerLinkActive="active">
       <mat-icon>person_add</mat-icon>
       Register
     </button>
-  </mat-menu>
+    <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/login" routerLinkActive="active">
+        <mat-icon>login</mat-icon>
+        Login
+      </button>
+      <button mat-menu-item routerLink="/register" routerLinkActive="active">
+        <mat-icon>person_add</mat-icon>
+        Register
+      </button>
+    </mat-menu>
+  </div>
+
+  <div *ngIf="authService.isLoggedIn()">
+    <button *ngIf="!isMobile" mat-button routerLink="" routerLinkActive="active" class="button-spacer">
+      <mat-icon>add</mat-icon>
+      Add Game
+    </button>
+    <button *ngIf="!isMobile" mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="" routerLinkActive="active">
+        <mat-icon>account_circle</mat-icon>
+        Profile
+      </button>
+      <button mat-menu-item routerLink="" routerLinkActive="active">
+        <mat-icon>history</mat-icon>
+        History
+      </button>
+      <button mat-menu-item routerLink="/login" (click)="authService.logoutUser()" routerLinkActive="active" class="logout">
+        <mat-icon color="warn">logout</mat-icon>
+        Logout
+      </button>
+    </mat-menu>
+
+    <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="" routerLinkActive="active">
+        <mat-icon>add</mat-icon>
+        Add Game
+      </button>
+      <button mat-menu-item routerLink="" routerLinkActive="active">
+        <mat-icon>account_circle</mat-icon>
+        Profile
+      </button>
+      <button mat-menu-item routerLink="" routerLinkActive="active">
+        <mat-icon>history</mat-icon>
+        History
+      </button>
+      <button mat-menu-item routerLink="/login" (click)="authService.logoutUser()" routerLinkActive="active" class="logout">
+        <mat-icon color="warn">logout</mat-icon>
+        Logout
+      </button>
+    </mat-menu>
+  </div>
 </mat-toolbar>

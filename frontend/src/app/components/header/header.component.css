@@ -1,10 +1,15 @@
-mat-toolbar {
-  position: sticky;
-  z-index: 1000; /* Bringt den Header in den Vordergrund */
+.menu-button {
+  vertical-align: middle;
 }
+
 .active {
   background-color: #d7e3ff;
 }
+
+.logout {
+  color: #ba1a1a;
+}
+
 
 .spacer {
   flex: 1 1 auto;
@@ -14,8 +19,14 @@ mat-toolbar {
   width: 30px;
 }
 
+.button-spacer {
+  margin-right: 10px;
+}
+
+
 .mat-toolbar {
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 

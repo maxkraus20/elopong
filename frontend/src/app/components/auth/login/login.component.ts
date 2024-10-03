@@ -9,6 +9,7 @@ import {NgIf} from "@angular/common";
 import {AuthService} from "../../../services/auth.service";
 import {AuthRequestDto} from "../../../dtos/authRequestDto";
 import {MatIcon} from "@angular/material/icon";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -40,7 +41,8 @@ export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
   }
 
@@ -61,6 +63,7 @@ export class LoginComponent implements OnInit {
         next: value => {
           this.responseData = value;
           localStorage.setItem('token', this.responseData.token);
+          this.router.navigate(['/leaderboard']);
         }, error: err => {
           console.log(err);
         }
