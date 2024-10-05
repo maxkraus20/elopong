@@ -33,7 +33,7 @@
   </div>
 
   <div *ngIf="authService.isLoggedIn()">
-    <button *ngIf="!isMobile" mat-button routerLink="" routerLinkActive="active" class="button-spacer">
+    <button *ngIf="!isMobile" mat-button routerLink="/add-game" routerLinkActive="active" class="button-spacer">
       <mat-icon>add</mat-icon>
       Add Game
     </button>
@@ -41,11 +41,11 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="" routerLinkActive="active">
+      <button mat-menu-item routerLink="/profile" routerLinkActive="active">
         <mat-icon>account_circle</mat-icon>
         Profile
       </button>
-      <button mat-menu-item routerLink="" routerLinkActive="active">
+      <button mat-menu-item routerLink="/history" routerLinkActive="active">
         <mat-icon>history</mat-icon>
         History
       </button>
@@ -59,15 +59,15 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="" routerLinkActive="active">
+      <button mat-menu-item routerLink="/add-game" routerLinkActive="active">
         <mat-icon>add</mat-icon>
         Add Game
       </button>
-      <button mat-menu-item routerLink="" routerLinkActive="active">
+      <button mat-menu-item routerLink="/profile" routerLinkActive="active">
         <mat-icon>account_circle</mat-icon>
         Profile
       </button>
-      <button mat-menu-item routerLink="" routerLinkActive="active">
+      <button mat-menu-item routerLink="/history" routerLinkActive="active">
         <mat-icon>history</mat-icon>
         History
       </button>

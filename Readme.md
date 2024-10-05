@@ -16,9 +16,10 @@ The project is still in development, but several key backend functionalities hav
 - **Game Storage and Elo Rating Calculation:** Games are recorded, and player Elo ratings are updated based on results.
 
 ### Frontend Status
-Currently, users can **register** and **log in**. Other functionalities, like displaying game history and Elo ratings, are in progress.
+Currently, users can **register** and **log in**. Other functionalities, like viewing and editing the profile, displaying game history and Elo ratings, are in progress.
 
 ## Planned Features
+- **Leaderboard:** An Overview of the Elo-Points of all the players.
 - **Game Overview:** A graphical representation of played games and a game history view.
 - **User Profiles:** Each user will have an editable profile.
 - **Admin Area:** A section for admins to manage users.
