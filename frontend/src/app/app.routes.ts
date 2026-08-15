@@ -7,13 +7,19 @@ import {AddGameComponent} from "./components/add-game/add-game.component";
 import {authGuard} from "./guards/auth.guard";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {HistoryComponent} from "./components/history/history.component";
+import {SingleComponent} from "./components/add-game/single/single.component";
+import {DoubleComponent} from "./components/add-game/double/double.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: '/leaderboard', pathMatch: 'full'},
   {path: 'login', component: LoginComponent, canActivate: [unAuthGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [unAuthGuard]},
   {path: 'leaderboard', component: LeaderboardComponent},
-  {path: 'add-game', component: AddGameComponent, canActivate: [authGuard]},
+  {path: 'add-game', canActivate: [authGuard], children: [
+      {path: '', component: AddGameComponent, canActivate: [authGuard]},
+      {path: 'single', component: SingleComponent, canActivate: [authGuard]},
+      {path: 'double', component: DoubleComponent, canActivate: [authGuard]},
+    ]},
   {path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
   {path: 'history', component: HistoryComponent, canActivate: [authGuard]}
 ];

@@ -55,10 +55,10 @@
       </button>
     </mat-menu>
 
-    <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+    <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="mobileMenu" class="menu-button">
       <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #mobileMenu="matMenu">
       <button mat-menu-item routerLink="/add-game" routerLinkActive="active">
         <mat-icon>add</mat-icon>
         Add Game
